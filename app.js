@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const webpush = require('web-push');
 const bodyParser = require('body-parser');
@@ -10,14 +11,10 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(bodyParser.json());
 
-const publicVapidKey =
-  'BJKfugtSRPwIUr9P6wqFa0jmB_d9TmRR7W0Yquxulf0rCpQPe3KStrZ0vLIca39LQtphUobaV3c2lmqzS3Q2ey4';
-const privateVapidKey = 'hF869KWOvBTtE821gULPwhNrcKqF3xl9LwwRWJKQYJs';
-
 webpush.setVapidDetails(
   'mailto:test@test.com',
-  publicVapidKey,
-  privateVapidKey
+  process.env.PUBLIC_VAPID,
+  process.env.PRIVATE_VAPID
 );
 
 // Subscribe Route
@@ -57,6 +54,5 @@ app.post('/subscribe', (req, res) => {
     .catch((err) => console.error(err));
 });
 
-const port = 5000;
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// Export app
+module.exports = app;
