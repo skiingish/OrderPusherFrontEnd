@@ -1,8 +1,7 @@
 const endPoint = 'https://web-pager-backend.herokuapp.com';
 //const endPoint = 'http://localhost:3000';
 
-var publicVapidKey =
-  'BJKfugtSRPwIUr9P6wqFa0jmB_d9TmRR7W0Yquxulf0rCpQPe3KStrZ0vLIca39LQtphUobaV3c2lmqzS3Q2ey4';
+var publicVapidKey = '';
 
 var orderID = null;
 
@@ -31,8 +30,12 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
   // Status
   document.getElementById('statusIDField').innerText = `Status: ${
-    data.fulfilled ? 'Ready to collect' : 'Prepping'
+    data.fulfilled ? 'Ready to collect 😃' : 'Prepping'
   }`;
+
+  if (data.fulfilled) {
+    document.getElementById('statusIDField').style.border = '5px solid green';
+  }
 });
 
 if ('serviceWorker' in navigator) {
