@@ -34,7 +34,12 @@ window.addEventListener('DOMContentLoaded', async (event) => {
   }`;
 
   if (data.fulfilled) {
-    document.getElementById('statusIDField').style.border = '5px solid green';
+    const statusField = document.getElementById('statusIDField');
+    statusField.style.border = '5px solid green';
+    statusField.style.backgroundColor = 'green';
+    statusField.style.color = 'white';
+  } else {
+    // use default styling
   }
 });
 
